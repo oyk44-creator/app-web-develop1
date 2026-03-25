@@ -1,0 +1,53 @@
+<!--
+  Magic Link Email Template - Simple Version
+  퓨처모빌리티AI - 매직 링크 이메일 템플릿 (심플 버전)
+
+  Supabase 대시보드 적용 방법:
+  1. https://supabase.com/dashboard/project/vnqffhzjlxlkomytykah
+  2. Authentication → Email Templates → Magic Link
+  3. 아래 내용을 복사하여 붙여넣기
+-->
+
+<!-- Subject -->
+로그인 링크
+
+<!-- Body -->
+<div
+  style="
+    font-family: sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  "
+>
+  <h2 style="color: #333">퓨처모빌리티AI</h2>
+
+  <p>안녕하세요,</p>
+
+  <p>아래 링크를 클릭하여 로그인하세요:</p>
+
+  <p>
+    <a
+      href="{{ .ConfirmationURL }}"
+      style="
+        display: inline-block;
+        background-color: #3b82f6;
+        color: white;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+      "
+    >
+      로그인
+    </a>
+  </p>
+
+  <p style="color: #666; font-size: 14px">
+    이 링크는 1시간 동안 유효합니다.<br />
+    로그인을 요청하지 않으셨다면 이 메일을 무시하세요.
+  </p>
+
+  <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0" />
+
+  <p style="color: #999; font-size: 12px">© 2024 퓨처모빌리티AI</p>
+</div>

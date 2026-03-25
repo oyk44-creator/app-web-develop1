@@ -1,0 +1,60 @@
+# PR 생성 시 자동으로 코드 품질을 검사하는 워크플로우
+name: PR Checks
+
+# 트리거 조건: main 또는 develop 브랜치로 PR이 생성되거나 업데이트될 때 실행
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  quality-checks:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest # Ubuntu 최신 버전 환경에서 실행
+
+    # 모든 step에서 사용할 환경 변수 설정
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
+    steps:
+      # 1. 저장소 코드 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Node.js 환경 설정 (v20, npm 캐시 활성화)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm" # npm 의존성 캐싱으로 설치 속도 향상
+
+      # 3. 의존성 설치 (npm ci는 package-lock.json 기반으로 정확한 버전 설치)
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Prettier 포맷 체크 - 코드 포맷팅 규칙 준수 여부 확인
+      - name: Run Prettier Check
+        run: npm run format:check
+
+      # 5. ESLint 실행 - 코드 스타일 및 잠재적 오류 검사
+      - name: Run ESLint
+        run: npm run lint
+
+      # 6. TypeScript 타입 체크 - 타입 오류 검사
+      - name: Run Type Check
+        run: npm run type-check
+
+      # 7. Next.js 프로젝트 빌드 - 실제 배포 가능한지 확인
+      - name: Build project
+        run: npm run build
+
+      # 8. 빌드 결과물 검증 - .next 디렉토리 존재 여부 확인
+      - name: Check build output
+        run: |
+          if [ ! -d ".next" ]; then
+            echo "Build failed - .next directory not found"
+            exit 1
+          fi
+          echo "Build completed successfully"

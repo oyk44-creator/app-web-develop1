@@ -1,0 +1,90 @@
+# _______________________________
+# Next.js specific files and directories
+# _______________________________
+
+# Next.js build output
+.next/
+out/
+
+# Vercel related directories (if deployed on Vercel)
+.vercel/
+
+# _______________________________
+# Dependency and Module directories
+# _______________________________
+
+# Node dependency directory
+node_modules
+
+# pnpm store (if using pnpm)
+.pnpm-store
+
+# Yarn PnP Cache (if using Yarn PnP)
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# _______________________________
+# Logs and Caches
+# _______________________________
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.log
+
+# Caches
+.eslintcache
+.turbo/
+
+# _______________________________
+# Environment Variables
+# _______________________________
+
+# Local environment variables
+.env
+.env.local
+.env.development.local
+.env.production.local
+
+# _______________________________
+# Testing, Coverage and Artifacts
+# _______________________________
+
+# Coverage directory
+coverage/
+
+# Artifacts/build directories
+dist/
+build/
+es/
+lib/
+temp/
+
+# _______________________________
+# macOS Files
+# _______________________________
+
+.DS_Store
+
+# _______________________________
+# VS Code / IDE
+# _______________________________
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+
+# Custom TypeScript build output
+# If you compile your TypeScript to a different directory than .next/
+# tsconfig.tsbuildinfo
+
+
+# supabase
+/supabase
