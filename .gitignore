@@ -61,7 +61,7 @@ coverage/
 dist/
 build/
 es/
-lib/
+/lib/
 temp/
 
 # _______________________________
